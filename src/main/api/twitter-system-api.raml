@@ -1,0 +1,28 @@
+#%RAML 1.0
+title: Twitter System API
+version: 1.0
+baseUri: http://localhost:8081/twitter/
+
+documentation: 
+  - title: Twitter System API
+    content:  This API exposes data from Twitter, in a read-only manner. There is no intention of providing a version capable of posting tweets, they are simply retrieved, according to a textual search term. Similarly, there is no intent to extend the API to retrieve specific Tweets by ID; only a list is provided.
+
+types: 
+  Result:
+    type: !include exchange_modules/69d7f319-0d94-4bcb-b6e9-d6d5e28b1545/data-aggregation-demo-data-types/1.0.1/Result.raml
+
+/tweets:
+  /{searchTerm}:
+    get:
+      responses: 
+        200:
+          body: 
+            application/json:
+              type: Result
+        404:
+          body: 
+            application/json:
+        500:
+          body: 
+            application/json:
+              

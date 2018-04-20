@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+<mule xmlns:twitter="http://www.mulesoft.org/schema/mule/twitter" xmlns:context="http://www.springframework.org/schema/context" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
-http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.mulesoft.org/schema/mule/twitter http://www.mulesoft.org/schema/mule/twitter/current/mule-twitter.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd">
     <http:listener-config name="twitter-system-api-httpListenerConfig" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
     <apikit:config name="twitter-system-api-config" raml="twitter-system-api.raml" consoleEnabled="false" doc:name="Router"/>
+    <context:property-placeholder location="universal-properties.properties"/>
+    <twitter:config name="Twitter__Configuration" accessKey="${twitter.access.key}" accessSecret="${twitter.access.secret}" consumerKey="${twitter.consumer.key}" consumerSecret="${twitter.consumer.secret}" doc:name="Twitter: Configuration"/>
     <flow name="twitter-system-api-main">
         <http:listener config-ref="twitter-system-api-httpListenerConfig" path="/api/*" doc:name="HTTP"/>
         <apikit:router config-ref="twitter-system-api-config" doc:name="APIkit Router"/>
@@ -15,6 +19,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
         <apikit:console config-ref="twitter-system-api-config" doc:name="APIkit Console"/>
     </flow>
     <flow name="get:/tweets/{searchTerm}:twitter-system-api-config">
+        <twitter:search config-ref="Twitter__Configuration" query="#[flowVars.searchTerm]" doc:name="Twitter"/>
         <set-payload value="#[NullPayload.getInstance()]" doc:name="Set Payload"/>
     </flow>
     <apikit:mapping-exception-strategy name="twitter-system-api-apiKitGlobalExceptionMapping">

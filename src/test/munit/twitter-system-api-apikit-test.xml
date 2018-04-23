@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:mock="http://www.mulesoft.org/schema/mule/mock" xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+http://www.mulesoft.org/schema/mule/mock http://www.mulesoft.org/schema/mule/mock/current/mule-mock.xsd">
+    <spring:beans>
+        <spring:import resource="classpath:twitter-system-api.xml" />
+    </spring:beans>
+    <munit:config mock-connectors="false" mock-inbounds="false" doc:name="MUnit configuration"/>
+    <http:request-config name="HTTP_Request_Configuration" host="localhost" port="8081" basePath="/twitter" doc:name="HTTP Request Configuration"/>
+    <munit:test name="testMultipleResults" description="Verifying functionality of [get:/tweets/searchTerm:twitter-system-api-config-200-application/json]">
+        <mock:when messageProcessor=".*:.*" doc:name="Mock Multiple Tweet Results">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Twitter']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[getResource('samples/sample-2tweets.json').asString()]" mimeType="application/java"/>
+        </mock:when>
+        <http:request config-ref="HTTP_Request_Configuration" method="GET" path="/tweets/searchTerm" doc:name="HTTP">
+            <http:request-builder>
+                <http:header headerName="Accept" value="application/json"/>
+            </http:request-builder>
+        </http:request>
+        <object-to-string-transformer doc:name="http response to string" />
+        <munit:assert-true message="The HTTP Status code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(200))]" doc:name="assert that - http.status eq 200" />
+        <munit:assert-on-equals message="The response payload is not correct!" expectedValue="#[getResource('scaffolder/response/get_200_multipletweets.json').asString()]" actualValue="#[payload]" doc:name="assert that - payload is as expected" />
+    </munit:test>
+    <munit:test name="testSingleResults" description="Verifying handling of single tweet response">
+        <mock:when messageProcessor=".*:.*" doc:name="Mock Single Tweet Result">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Twitter']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[getResource('samples/sample-1tweet.json').asString()]" mimeType="application/java"/>
+        </mock:when>
+        <http:request config-ref="HTTP_Request_Configuration" method="GET" path="/tweets/searchTerm" doc:name="HTTP">
+            <http:request-builder>
+                <http:header headerName="Accept" value="application/json"/>
+            </http:request-builder>
+        </http:request>
+        <object-to-string-transformer doc:name="http response to string" />
+        <munit:assert-true message="The HTTP Status code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(200))]" doc:name="assert that - http.status eq 200" />
+        <munit:assert-on-equals message="The response payload is not correct!" expectedValue="#[getResource('scaffolder/response/get_200_onetweet.json').asString()]" actualValue="#[payload]" doc:name="assert that - payload is as expected" />
+    </munit:test>
+    <munit:test name="testNoResults" description="Verifying functionality of [get:/tweets/searchTerm:twitter-system-api-config-404-application/json]">
+        <mock:when messageProcessor=".*:.*" doc:name="Mock No Tweet Results">
+            <mock:with-attributes>
+                <mock:with-attribute name="doc:name" whereValue="#['Twitter']"/>
+            </mock:with-attributes>
+            <mock:then-return payload="#[getResource('samples/sample-notweets.json').asString()]" mimeType="application/java"/>
+        </mock:when>
+        <http:request config-ref="HTTP_Request_Configuration" method="GET" path="/tweets/searchTerm" doc:name="HTTP">
+            <http:request-builder>
+                <http:header headerName="Accept" value="application/json"/>
+            </http:request-builder>
+            <http:success-status-code-validator values="404" />
+        </http:request>
+        <object-to-string-transformer doc:name="http response to string" />
+        <munit:assert-true message="The HTTP Status code is not correct!" condition="#[messageInboundProperty('http.status').is(eq(404))]" doc:name="assert that - http.status eq 404" />
+    </munit:test>
+</mule>
+

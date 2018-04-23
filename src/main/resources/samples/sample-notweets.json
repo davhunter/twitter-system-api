@@ -1,0 +1,19 @@
+{
+  "sinceId":0,
+  "maxId":10,
+  "refreshUrl":"?since_id=1&q=searchTerm&include_entities=1",
+  "count":15,
+  "completedIn":0.012,
+  "query":"searchTerm",
+  "tweets":[],
+  "refreshURL":"?since_id=1&q=searchTerm&include_entities=1",
+  "accessLevel":1,
+  "rateLimitStatus":
+  {
+    "remaining":175,
+    "limit":180,
+    "resetTimeInSeconds":1524499927,
+    "secondsUntilReset":147,
+    "remainingHits":175
+  }
+}

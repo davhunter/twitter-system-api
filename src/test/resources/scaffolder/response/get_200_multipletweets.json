@@ -1,0 +1,49 @@
+{
+  "detailedResults": [
+    {
+      "datePublished": "1524492677000",
+      "hashtags": null,
+      "id": "1",
+      "source": "twitter",
+      "text": "Tweet 1",
+      "url": "https://twitter.com/i/web/status/1",
+      "user": "twitterUser1"
+    },
+    {
+      "datePublished": "1524492672000",
+      "hashtags": [
+        "job",
+        "Miami",
+        "WebDesign",
+        "Hiring",
+        "CareerArc"
+      ],
+      "id": "2",
+      "source": "twitter",
+      "text": "Tweet 2",
+      "url": "https://twitter.com/i/web/status/2",
+      "user": "twitterUser2"
+    }
+  ],
+  "searchTerm": "searchTerm",
+  "simpleResults": [
+    {
+      "categories": null,
+      "id": 1,
+      "source": "twitter",
+      "text": "Tweet 1"
+    },
+    {
+      "categories": [
+        "job",
+        "Miami",
+        "WebDesign",
+        "Hiring",
+        "CareerArc"
+      ],
+      "id": 2,
+      "source": "twitter",
+      "text": "Tweet 2"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "detailedResults": [
+    {
+      "datePublished": "1524492677000",
+      "hashtags": null,
+      "id": "1",
+      "source": "twitter",
+      "text": "Tweet 1",
+      "url": "https://twitter.com/i/web/status/1",
+      "user": "twitterUser1"
+    }
+  ],
+  "searchTerm": "searchTerm",
+  "simpleResults": [
+    {
+      "categories": null,
+      "id": 1,
+      "source": "twitter",
+      "text": "Tweet 1"
+    }
+  ]
+}

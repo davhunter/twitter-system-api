@@ -1,0 +1,29 @@
+{
+  "sinceId": 0,
+  "maxId": 988420046576803800,
+  "refreshUrl": "?since_id=988420046576803840&q=searchTerm&include_entities=1",
+  "count": 15,
+  "completedIn": 0.082,
+  "query": "searchTerm",
+  "tweets": [
+    {
+      "createdAt": 1524492677000,
+      "id": 1,
+      "text": "Tweet 1",
+      "user": {
+        "id": 517759039,
+        "name": "Twitter User 1",
+        "screenName": "twitterUser1"
+      }
+    }
+  ],
+  "refreshURL": "?since_id=1&q=searchTerm&include_entities=1",
+  "accessLevel": 1,
+  "rateLimitStatus": {
+    "remaining": 177,
+    "limit": 180,
+    "resetTimeInSeconds": 1524493144,
+    "secondsUntilReset": 512,
+    "remainingHits": 177
+  }
+}

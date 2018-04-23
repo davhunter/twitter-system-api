@@ -26,6 +26,7 @@ local.properties
 # Recommended for Maven based projects 
 .project
 .classpath
+.mule
 
 # External tool builders
 .externalToolBuilders/
@@ -46,3 +47,4 @@ local.properties
 flows/
 target/
 src/main/api/.repository/ 
+catalog/

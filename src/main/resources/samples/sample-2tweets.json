@@ -1,0 +1,66 @@
+{
+  "sinceId": 0,
+  "maxId": 988420046576803800,
+  "refreshUrl": "?since_id=988420046576803840&q=searchTerm&include_entities=1",
+  "count": 15,
+  "completedIn": 0.082,
+  "query": "searchTerm",
+  "tweets": [
+    {
+      "createdAt": 1524492677000,
+      "id": 1,
+      "text": "Tweet 1",
+      "user": {
+        "id": 517759039,
+        "name": "Twitter User 1",
+        "screenName": "twitterUser1"
+      }
+    },
+    {
+      "createdAt": 1524492672000,
+      "id": 2,
+      "text": "Tweet 2",
+      "hashtagEntities": [
+        {
+          "start": 16,
+          "end": 20,
+          "text": "job"
+        },
+        {
+          "start": 24,
+          "end": 30,
+          "text": "Miami"
+        },
+        {
+          "start": 87,
+          "end": 97,
+          "text": "WebDesign"
+        },
+        {
+          "start": 98,
+          "end": 105,
+          "text": "Hiring"
+        },
+        {
+          "start": 106,
+          "end": 116,
+          "text": "CareerArc"
+        }
+      ],
+      "user": {
+        "id": 22256565,
+        "name": "Twitter User 2",
+        "screenName": "twitterUser2"
+      }
+    }
+  ],
+  "refreshURL": "?since_id=1&q=searchTerm&include_entities=1",
+  "accessLevel": 1,
+  "rateLimitStatus": {
+    "remaining": 177,
+    "limit": 180,
+    "resetTimeInSeconds": 1524493144,
+    "secondsUntilReset": 512,
+    "remainingHits": 177
+  }
+}

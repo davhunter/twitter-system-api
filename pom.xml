@@ -17,7 +17,6 @@
 		<mule.tools.version>1.2</mule.tools.version>
 		<munit.version>1.3.7</munit.version>
 		<mule.munit.support.version>3.9.1</mule.munit.support.version>
-		<mule.maven.plugin.version>3.1.1</mule.maven.plugin.version>
 		<deployment.uri>https://anypoint.mulesoft.com</deployment.uri>
 		<deployment.region>ca-central-1</deployment.region>
 		<deployment.environment>Sandbox</deployment.environment>
@@ -30,15 +29,15 @@
 				<artifactId>mule-app-maven-plugin</artifactId>
 				<version>${mule.tools.version}</version>
 				<extensions>true</extensions>
-				<configuration>
-					<copyToAppsDirectory>true</copyToAppsDirectory>
-					<inclusions>
-						<inclusion>
-							<groupId>org.mule.modules</groupId>
-							<artifactId>mule-module-twitter</artifactId>
-						</inclusion>
-					</inclusions>
-				</configuration>
+<!-- 				<configuration> -->
+<!-- 					<copyToAppsDirectory>true</copyToAppsDirectory> -->
+<!-- 					<inclusions> -->
+<!-- 						<inclusion> -->
+<!-- 							<groupId>org.mule.modules</groupId> -->
+<!-- 							<artifactId>mule-module-twitter</artifactId> -->
+<!-- 						</inclusion> -->
+<!-- 					</inclusions> -->
+<!-- 				</configuration> -->
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -70,21 +69,30 @@
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
-				<version>${mule.maven.plugin.version}</version>
+				<version>2.0</version>
 				<extensions>true</extensions>
 				<configuration>
-					<skip>true</skip>
-					<cloudHubDeployment>
-						<uri>${deployment.uri}</uri>
-						<muleVersion>${app.runtime}</muleVersion>
-						<!-- username & password must be passed in from outside of the POM -->
-						<username>${username}</username>
-						<password>${password}</password>
-						<applicationName>${project.artifactId}</applicationName>
-						<environment>${deployment.environment}</environment>
-						<region>${deployment.region}</region>
-						<workerType>Micro</workerType>
-					</cloudHubDeployment>
+					<deploymentType>cloudhub</deploymentType>
+					<muleVersion>${app.runtime}</muleVersion>
+					<username>${username}</username>
+					<password>${password}</password>
+					<redeploy>true</redeploy>
+					<environment>${deployment.environment}</environment>
+					<applicationName>${project.artifactId}</applicationName>
+					<region>${deployment.region}</region>
+					<workerType>Micro</workerType>
+<!-- 					<skip>true</skip> -->
+<!-- 					<cloudHubDeployment> -->
+<!-- 						<uri>${deployment.uri}</uri> -->
+<!-- 						<muleVersion>${app.runtime}</muleVersion> -->
+<!-- 						username & password must be passed in from outside of the POM -->
+<!-- 						<username>${username}</username> -->
+<!-- 						<password>${password}</password> -->
+<!-- 						<applicationName>${project.artifactId}</applicationName> -->
+<!-- 						<environment>${deployment.environment}</environment> -->
+<!-- 						<region>${deployment.region}</region> -->
+<!-- 						<workerType>Micro</workerType> -->
+<!-- 					</cloudHubDeployment> -->
 				</configuration>
 				<executions>
 					<execution>
@@ -93,33 +101,6 @@
 						<goals>
 							<goal>deploy</goal>
 						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.7</version>
-				<executions>
-					<execution>
-						<id>add-resource</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>add-resource</goal>
-						</goals>
-						<configuration>
-							<resources>
-								<resource>
-									<directory>src/main/app/</directory>
-								</resource>
-								<resource>
-									<directory>src/main/api/</directory>
-								</resource>
-								<resource>
-									<directory>mappings/</directory>
-								</resource>
-							</resources>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>

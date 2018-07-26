@@ -8,10 +8,15 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
 http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
-    <http:listener-config name="twitter-system-api-httpListenerConfig" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
+
+    <http:listener-config name="twitter-system-api-httpListenerConfig" host="${http.host}" port="${http.port}" doc:name="HTTP Listener Configuration"/>
+    
     <apikit:config name="twitter-system-api-config" raml="twitter-system-api.raml" consoleEnabled="false" doc:name="Router"/>
+    
     <context:property-placeholder location="universal-properties.properties"/>
+    
     <twitter:config name="Twitter__Configuration" accessKey="${twitter.access.key}" accessSecret="${twitter.access.secret}" consumerKey="${twitter.consumer.key}" consumerSecret="${twitter.consumer.secret}" doc:name="Twitter: Configuration"/>
+    
     <flow name="twitter-system-api-main">
         <http:listener config-ref="twitter-system-api-httpListenerConfig" path="/twitter/*" doc:name="HTTP"/>
         <apikit:router config-ref="twitter-system-api-config" doc:name="APIkit Router"/>

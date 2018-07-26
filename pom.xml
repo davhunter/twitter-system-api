@@ -69,31 +69,20 @@
 			<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
-				<version>2.0</version>
+				<version>3.1.1</version>
 				<extensions>true</extensions>
 				<configuration>
-					<skip>true</skip>
-					<deploymentType>cloudhub</deploymentType>
-					<muleVersion>${app.runtime}</muleVersion>
-					<username>${username}</username>
-					<password>${password}</password>
-					<redeploy>true</redeploy>
-					<environment>${deployment.environment}</environment>
-					<applicationName>${project.artifactId}</applicationName>
-					<region>${deployment.region}</region>
-					<workerType>Micro</workerType>
-<!-- 					<skip>true</skip> -->
-<!-- 					<cloudHubDeployment> -->
-<!-- 						<uri>${deployment.uri}</uri> -->
-<!-- 						<muleVersion>${app.runtime}</muleVersion> -->
-<!-- 						username & password must be passed in from outside of the POM -->
-<!-- 						<username>${username}</username> -->
-<!-- 						<password>${password}</password> -->
-<!-- 						<applicationName>${project.artifactId}</applicationName> -->
-<!-- 						<environment>${deployment.environment}</environment> -->
-<!-- 						<region>${deployment.region}</region> -->
-<!-- 						<workerType>Micro</workerType> -->
-<!-- 					</cloudHubDeployment> -->
+					<cloudHubDeployment>
+						<uri>${deployment.uri}</uri>
+						<muleVersion>${app.runtime}</muleVersion>
+						<!-- username & password must be passed in from outside of the POM -->
+						<username>${username}</username>
+						<password>${password}</password>
+						<applicationName>${project.artifactId}</applicationName>
+						<environment>${deployment.environment}</environment>
+						<region>${deployment.region}</region>
+						<workerType>Micro</workerType>
+					</cloudHubDeployment>
 				</configuration>
 				<executions>
 					<execution>

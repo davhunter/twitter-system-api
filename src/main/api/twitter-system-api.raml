@@ -14,11 +14,13 @@ types:
 /tweets:
   /{searchTerm}:
     get:
+      description: Returns a set of tweets, matching the `searchTerm`
       responses: 
         200:
           body: 
             application/json:
               type: Result
+              example: !include examples/tweets.json
         404:
           body: 
             application/json:

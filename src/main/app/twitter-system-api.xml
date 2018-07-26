@@ -32,7 +32,7 @@ http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mu
 ---
 {
 	detailedResults: payload.tweets map ((tweet , indexOfTweet) -> {
-		datePublished: tweet.createdAt as :string,
+		datePublished: tweet.createdAt as :datetime {unit: "milliseconds"} as :string,
 		hashtags: tweet.hashtagEntities.text,
 		id: tweet.id as :string,
 		source: "twitter",
@@ -43,7 +43,7 @@ http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mu
 	searchTerm: payload.query,
 	simpleResults: payload.tweets map ((tweet, indexOfTweet) -> {
 		categories: tweet.hashtagEntities.text,
-		id: tweet.id,
+		id: tweet.id as :string,
 		source: "twitter",
 		text: tweet.text
 	})

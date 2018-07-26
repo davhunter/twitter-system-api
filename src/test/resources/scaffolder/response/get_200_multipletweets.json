@@ -1,7 +1,7 @@
 {
   "detailedResults": [
     {
-      "datePublished": "1524492677000",
+      "datePublished": "2018-04-23T14:11:17Z",
       "hashtags": null,
       "id": "1",
       "source": "twitter",
@@ -10,7 +10,7 @@
       "user": "twitterUser1"
     },
     {
-      "datePublished": "1524492672000",
+      "datePublished": "2018-04-23T14:11:12Z",
       "hashtags": [
         "job",
         "Miami",
@@ -29,7 +29,7 @@
   "simpleResults": [
     {
       "categories": null,
-      "id": 1,
+      "id": "1",
       "source": "twitter",
       "text": "Tweet 1"
     },
@@ -41,7 +41,7 @@
         "Hiring",
         "CareerArc"
       ],
-      "id": 2,
+      "id": "2",
       "source": "twitter",
       "text": "Tweet 2"
     }

@@ -1,0 +1,26 @@
+{
+  "searchTerm": "Search Term",
+  "detailedResults": [
+    {
+      "id": "1022504994233143296",
+      "source": "twitter",
+      "text": "Meet the \"MilleXZials\"! Learn how this group is disrupting traditional digital media consumption: #MilleXZials… https://t.co/sPy1OxDRSB",
+      "url": "https://twitter.com/i/web/status/1022504994233143296",
+      "user": "dheerajpoojari",
+      "datePublished": "1970-01-18T15:30:28Z",
+      "hashtags": [
+        "MilleXZials"
+      ]
+    }
+  ],
+  "simpleResults": [
+    {
+      "id": "1022504994233143296",
+      "source": "twitter",
+      "text": "Meet the \"MilleXZials\"! Learn how this group is disrupting traditional digital media consumption: #MilleXZials… https://t.co/sPy1OxDRSB",
+      "categories": [
+        "MilleXZials"
+      ]
+    }
+  ]
+}

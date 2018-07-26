@@ -73,7 +73,7 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-<!-- 					<skip>true</skip> -->
+					<skip>true</skip>
 					<cloudHubDeployment>
 						<uri>${deployment.uri}</uri>
 						<muleVersion>${app.runtime}</muleVersion>
